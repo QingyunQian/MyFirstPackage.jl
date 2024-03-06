@@ -18,3 +18,8 @@ record(fig, joinpath(@__DIR__, "barrier.mp4"), 1:100; framerate = 10) do i
     end
     vorticity[] = curl(momentum.(Ref(lb.config), lb.grid))'
 end
+
+using BenchmarkTools
+@benchmark step!($(deepcopy(lb)))
+
+

@@ -1,6 +1,6 @@
-using MyFirstPackage
 using Test
+using MyFirstPackage
 
-@testset "MyFirstPackage.jl" begin
-    # Write your tests here.
+@testset "lorenz" begin
+    include("lorenz.jl")
 end
