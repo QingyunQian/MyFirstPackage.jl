@@ -148,6 +148,7 @@ function curl(u::Matrix{Point2D{T}}) where T
         return uy - ux # a factor of 1/2 is missing here?
     end
 end
+@textset 
 
 function example_d2q9(;
     height = 80, width = 200,
