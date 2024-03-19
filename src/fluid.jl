@@ -107,14 +107,14 @@ end
 A lattice Boltzmann simulation with D dimensions, N velocities, and lattice configuration CFG.
 """
 
-struct LatticeBoltzmann{D, N, T, CFG<:AbstractLBConfig{D, N}, MT<:AbstractMatrix{Cell{N, T}}, BT<:AbstractMatrix{Bool}}
+struct LatticeBoltzmann{D, N, T, CFG<:AbstractLBConfig{D, N}, MT<:AbstractArray{Cell{N, T},D}, BT<:AbstractArray{Bool,D}}
     config::CFG # lattice configuration
     grid::MT    # density of the fluid
     gridcache::MT # cache for the density of the fluid
     barrier::BT # barrier configuration
 end
 
-function LatticeBoltzmann(config::AbstractLBConfig{D, N}, grid::AbstractMatrix{<:Cell}, barrier::AbstractMatrix{Bool}) where {D, N}
+function LatticeBoltzmann(config::AbstractLBConfig{D, N}, grid::AbstractArray{<:Cell,D}, barrier::AbstractArray{Bool,D}) where {D, N}
     @assert size(grid) == size(barrier)
     return LatticeBoltzmann(config, grid, similar(grid), barrier)
 end
